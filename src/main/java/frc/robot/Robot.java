@@ -2,11 +2,25 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+/* ==================================================
+ * Authors: Fawaaz Kamali Siddiqui
+ *
+ * --------------------------------------------------
+ * Description: Main robot class containing all controls,
+ * commands and subsystems. Subsystems declared in this 
+ * class are used in the commands directory.
+ * ================================================== */
+
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+
+import frc.robot.commands.drivetrain.*;
+
+import frc.robot.subsystems.*;
+import frc.robot.controls.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -14,22 +28,43 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot {
-  private Command m_autonomousCommand;
+public class Robot 
+{
+  // private Command m_autonomousCommand;
 
-  private RobotContainer m_robotContainer;
+  // private RobotContainer m_robotContainer;
+
+  // CONTROLS
+  public Driver driver;
+
+  // SUBSYSTEMS
+  public DriveTrain drivetrain;
+
+
+  // CONSTRUCTOR 
+  public Robot()
+  {
+    driver = new Driver(this);
+
+    drivetrain = new DriveTrain();
+
+    robotInit();
+  }
 
   /**
    * This function is run when the robot is first started up and should be used for any
-   * initialization code.
+   * initialization code. 
    */
   @Override
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    drivetrain.stopMotors();
   }
 
+  
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like
    * diagnostics that you want ran during disabled, autonomous, teleoperated and test.
@@ -101,3 +136,4 @@ public class Robot extends TimedRobot {
   @Override
   public void simulationPeriodic() {}
 }
+  

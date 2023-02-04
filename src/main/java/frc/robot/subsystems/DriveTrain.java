@@ -2,7 +2,8 @@
  * Authors: Fawaaz Siddiqui, Lemi Miyu
  *
  * --------------------------------------------------
- * Description:
+ * Description: Contains the basic methods to control 
+ * a mecanum drivetrain
  *
  * ================================================== */
 
@@ -12,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.motorcontrol.Victor;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import frc.robot.commands.Driver;
 
 
 public class DriveTrain extends SubsystemBase
@@ -26,7 +28,10 @@ public class DriveTrain extends SubsystemBase
   private Victor backLeft;
 
   // CONSTANTS //
-
+  public static final int FRONT_RIGHT_MOTOR = 0;
+  public static final int BACK_RIGHT_MOTOR = 0;
+  public static final int FRONT_LEFT_MOTOR = 0;
+  public static final int BACK_LEFT_MOTOR = 0; // channels to be finalized later
 
 
   // CONSTRUCTOR //
@@ -34,10 +39,10 @@ public class DriveTrain extends SubsystemBase
   public DriveTrain()
   {
     // instantiate hardware
-    frontRight = new Spark(0);
-    backRight = new Spark(1);
-    fronLeft = new Spark(2);
-    backLeft = new Victor(3); // channels to be determined later
+    frontRight = new Spark(FRONT_RIGHT_MOTOR);
+    backRight = new Spark(BACK_RIGHT_MOTOR);
+    frontLeft = new Spark(FRONT_LEFT_MOTOR)
+    backLeft = new Victor(BACK_LEFT_MOTOR); 
 
     // invert right side motors; may change according to robot
     frontRight.setInverted(true);
@@ -46,7 +51,18 @@ public class DriveTrain extends SubsystemBase
     m_robotDrive = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
   }
 
-  // METHODS //
+   // METHODS //
+
+  public void moveMotors(double speed, double turn, double rotate)
+  {
+    m_robotDrive.driveCartesian(turn, speed, rotate);
+  }
+
+  public void stopMotors()
+  {
+      m_robotDrive.stopMotor();
+  }
+
 
 
 }
