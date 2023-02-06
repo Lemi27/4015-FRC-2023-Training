@@ -21,7 +21,7 @@ public class Driver {
     // CONSTANTS
     public static final int THROTTLE_CHANNEL = 0;
     public static final int STEER_CHANNEL = 0;
-    public static final int ROTATION_CHANNEL = 0; // final values to be determined later
+    public static final int ROTATION_CHANNEL = 1; 
 
 
     public Driver(Robot robot)
