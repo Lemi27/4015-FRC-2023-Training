@@ -28,10 +28,10 @@ public class DriveTrain extends SubsystemBase
   private Victor backLeft;
 
   // CONSTANTS //
-  public static final int FRONT_RIGHT_MOTOR = 0;
-  public static final int BACK_RIGHT_MOTOR = 0;
-  public static final int FRONT_LEFT_MOTOR = 0;
-  public static final int BACK_LEFT_MOTOR = 0; // channels to be finalized later
+  public static final int FRONT_RIGHT_MOTOR = 2;
+  public static final int BACK_RIGHT_MOTOR = 4;
+  public static final int FRONT_LEFT_MOTOR = 1;
+  public static final int BACK_LEFT_MOTOR = 3; 
 
 
   // CONSTRUCTOR //
